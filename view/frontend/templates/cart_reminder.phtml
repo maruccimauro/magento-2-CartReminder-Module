@@ -1,0 +1,59 @@
+<?php
+/** @var $block \Mauro\CartReminder\Block\CartReminder */
+
+if (!$block->shouldRender()) {
+    return;
+}
+
+$itemsJson = $block->getItemsJson();
+?>
+
+<div id="cart-reminder-popup"
+     data-bind="scope: 'cartReminder'"
+     class="cart-reminder-overlay">
+
+    <div class="cart-popup-content">
+        <h2>🛍️ Don't Forget These!</h2>
+        <p class="popup-subtitle">
+            Complete the purchase of these products from your cart!
+        </p>
+
+        <div class="product-cards" data-bind="foreach: items">
+            <div class="product-card">
+                <a data-bind="attr: { href: url }">
+                    <div class="product-image-wrapper">
+                        <img data-bind="attr: { src: image, alt: name }"/>
+                    </div>
+                    <p class="product-name" data-bind="text: name"></p>
+                </a>
+            </div>
+        </div>
+
+        <div class="popup-buttons">
+            <button class="btn-complete"
+                    data-bind="click: goToCheckout">
+                Complete Purchase
+            </button>
+
+            <button class="btn-later"
+                    data-bind="click: closePopup">
+                Maybe Later
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#cart-reminder-popup": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "cartReminder": {
+                    "component": "Mauro_CartReminder/js/cart-reminder",
+                    "items": <?= $itemsJson ?>
+                }
+            }
+        }
+    }
+}
+</script>
