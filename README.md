@@ -50,7 +50,7 @@ Create the module directory and clone the repository:
 
 ```bash
     mkdir -p app/code/Mauro/CartReminder
-    git clone https://github.com/maruccimauro/magento-2-CartReminder-Module.git app/code/Mauro/CartReminder
+    git clone https://github.com/maruccimauro/magento-2-CartReminder-Module.git src/app/code/Mauro/CartReminder
 ```
 
 ### Enable the module:
